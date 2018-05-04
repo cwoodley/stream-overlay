@@ -1,10 +1,21 @@
+/* @flow */
+
 import * as React from "react"
 import * as ReactDom from "react-dom"
 import io from "socket.io-client"
 
 const socketEndpoint = 'http://localhost:3000/update'
 
-export class Game extends React.Component {
+type Props = {}
+
+type State = {
+  currentGame: string | null
+}
+
+export class Game extends React.Component<Props,State> {
+  state = {
+    currentGame: null
+  }
 
   connectToSocket() {
     const socket = io(socketEndpoint)
@@ -19,7 +30,11 @@ export class Game extends React.Component {
 
   render() {
     return (
-      <h1>game titles</h1>    
+      <React.Fragment>
+        <h1>titles</h1>    
+
+        <h2>game: {this.state.currentGame}</h2>
+      </React.Fragment>
     )
   }
 }
