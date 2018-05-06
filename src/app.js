@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import queryString from "query-string";
 import io from "socket.io-client";
 
 import { Game } from "./components/Game";
@@ -9,7 +10,8 @@ const socketEndpoint = "http://cale.localdev:3000";
 class App extends React.Component {
   state = {
     connected: false,
-    currentGame: null
+    currentGame: null,
+    debugStyling: false
   };
 
   connectToSocket() {
@@ -20,19 +22,27 @@ class App extends React.Component {
     });
 
     socket.on("currentGame", data => {
-      this.setCurrentGame(data);
+      this.setState({ currentGame: data });
     });
   }
 
-  setCurrentGame(data) {
-    if (this.state.currentGame === data) {
+  checkDebugFlags() {
+    const flags = location.search;
+
+    if (!flags) {
       return;
     }
 
-    this.setState({ currentGame: data });
+    const parsed = queryString.parse(flags);
+    if (!parsed) {
+      return;
+    } else if (parsed.debug === "styles") {
+      this.setState({ debugStyling: true });
+    }
   }
 
   componentDidMount() {
+    this.checkDebugFlags();
     this.connectToSocket();
   }
 
@@ -42,6 +52,8 @@ class App extends React.Component {
         <div>{this.state.connected ? "connected" : "disconnected"}</div>
 
         <Game currentGame={this.state.currentGame} nextGame={false} />
+
+        <div>{this.state.debugStyling ? "debug styling on" : "false"}</div>
       </React.Fragment>
     );
   }
