@@ -3,7 +3,9 @@ import * as ReactDOM from "react-dom";
 import queryString from "query-string";
 import io from "socket.io-client";
 
-import { Game } from "./components/Game";
+import {
+  Game
+} from "./components/Game";
 
 const socketEndpoint = "http://cale.localdev:3000";
 
@@ -18,12 +20,20 @@ class App extends React.Component {
     const socket = io(socketEndpoint);
 
     socket.on("connect", () => {
-      this.setState({ connected: true });
+      this.setState({
+        connected: true
+      });
     });
 
     socket.on("currentGame", data => {
-      this.setState({ currentGame: data });
+      this.setState({
+        currentGame: data
+      });
     });
+
+    socket.on("debug", data => {
+      console.log(data)
+    })
   }
 
   checkDebugFlags() {
@@ -37,7 +47,9 @@ class App extends React.Component {
     if (!parsed) {
       return;
     } else if (parsed.debug === "styles") {
-      this.setState({ debugStyling: true });
+      this.setState({
+        debugStyling: true
+      });
     }
   }
 
@@ -47,16 +59,29 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <div>{this.state.connected ? "connected" : "disconnected"}</div>
+    return ( <
+      React.Fragment >
+      <
+      div > {
+        this.state.connected ? "connected" : "disconnected"
+      } < /div>
 
-        <Game currentGame={this.state.currentGame} nextGame={false} />
+      <
+      Game currentGame = {
+        this.state.currentGame
+      }
+      nextGame = {
+        false
+      }
+      />
 
-        <div>{this.state.debugStyling ? "debug styling on" : "false"}</div>
-      </React.Fragment>
+      <
+      div > {
+        this.state.debugStyling ? "debug styling on" : "false"
+      } < /div> <
+      /React.Fragment>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render( < App / > , document.getElementById("app"));
