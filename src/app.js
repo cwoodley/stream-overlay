@@ -67,7 +67,10 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div> {this.state.connected ? 'connected' : 'disconnected'} </div>
-        <Game currentGame={this.state.currentGame} nextGame={false} />
+        <Game
+          currentGame={this.state.currentGame}
+          nextGame={this.state.nextGame}
+        />
       </React.Fragment>
     )
   }
