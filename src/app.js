@@ -11,7 +11,8 @@ class App extends React.Component {
   state = {
     connected: false,
     currentGame: null,
-    debugStyling: false
+    debugStyling: false,
+    tickerItems: null
   }
 
   connectToSocket() {
@@ -26,6 +27,12 @@ class App extends React.Component {
     socket.on('currentGame', data => {
       this.setState({
         currentGame: data
+      })
+    })
+
+    socket.on('tickerItems', data => {
+      this.setState({
+        tickerItems: data
       })
     })
 
@@ -61,7 +68,6 @@ class App extends React.Component {
       <React.Fragment>
         <div> {this.state.connected ? 'connected' : 'disconnected'} </div>
         <Game currentGame={this.state.currentGame} nextGame={false} />
-        {/* <div>{this.state.debugStyling ? 'debug styling on' : 'false'}</div> */}
       </React.Fragment>
     )
   }
