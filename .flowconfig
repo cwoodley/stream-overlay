@@ -1,4 +1,8 @@
 [ignore]
+.vscode/*
+.cache/*
+dist/*
+./node_modules/*
 
 [include]
 
