@@ -6,6 +6,7 @@ import queryString from "query-string"
 import io from "socket.io-client"
 
 import { Game } from "./components/Game"
+import { TickerItems } from "./components/TickerItems"
 
 const socketEndpoint = "http://cale.localdev:3000"
 
@@ -82,10 +83,12 @@ export class App extends React.Component<{}, State> {
           currentGame={this.state.currentGame}
           nextGame={this.state.nextGame}
         />
-        {/* <Ticker tickerItems={this.state.tickerItems} /> */}
+        <TickerItems items={this.state.tickerItems} />
       </React.Fragment>
     )
   }
 }
 
+// must explicitly allow any type with ReactDOM's render function here
+// otherwise flow will complain
 ReactDOM.render(<App />, (document.getElementById("app"): any))
