@@ -5,7 +5,6 @@ import * as ReactDOM from "react-dom"
 import styled from "styled-components"
 
 const Container = styled.div`
-  font-family: "Gothic A1", sans-serif;
   position: relative;
 `
 

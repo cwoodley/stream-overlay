@@ -5,6 +5,7 @@ import * as ReactDOM from "react-dom"
 import queryString from "query-string"
 import io from "socket.io-client"
 
+import { styles } from "./styles"
 import { Frame } from "./components/Frame"
 import { Game } from "./components/Game"
 import { TickerItems } from "./components/TickerItems"
