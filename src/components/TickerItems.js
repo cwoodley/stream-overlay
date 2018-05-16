@@ -6,6 +6,14 @@ import styled from "styled-components"
 
 const Container = styled.div`
   font-family: "Gothic A1", sans-serif;
+  position: relative;
+`
+
+const StyledItem = styled.div`
+  display: inline-block;
+  position: absolute;
+  transition: opacity 0.2s linear;
+  opacity: ${props => (props.isActive ? "1" : "0")};
 `
 
 type Props = {
@@ -19,14 +27,6 @@ type State = {
 export class TickerItems extends React.Component<Props, State> {
   state = {
     activeItem: 0
-  }
-
-  setItemList = (items: string[]) => {
-    this.handleItemSwap(items)
-  }
-
-  handleItemSwap = (items: string[]) => {
-    console.log(items.length)
   }
 
   handleNextTicker = () => {
@@ -45,23 +45,33 @@ export class TickerItems extends React.Component<Props, State> {
     })
   }
 
-  componentDidMount() {
-    this.setItemList(this.props.items)
+  cycleTicker = () => {
+    setInterval(() => {
+      this.handleNextTicker()
+    }, 2000)
   }
 
-  componentWillReceiveProps() {
-    this.setItemList(this.props.items)
+  componentDidMount() {
+    this.cycleTicker()
   }
 
   render() {
     const data = this.props.items
-    const length = data.length
-    const index = this.state.activeItem
+    const activeItem = this.state.activeItem
+
+    const dataItems = data.map((item, i) => {
+      const isActive = i === activeItem ? true : false
+      return (
+        <StyledItem key={i} isActive={isActive}>
+          {item}
+        </StyledItem>
+      )
+    })
 
     return (
       <Container onClick={this.handleNextTicker}>
         Ticker Items:
-        {data[index]}
+        {dataItems}
       </Container>
     )
   }
