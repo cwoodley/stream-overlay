@@ -5,6 +5,7 @@ import * as ReactDOM from "react-dom"
 import queryString from "query-string"
 import io from "socket.io-client"
 
+import { Frame } from "./components/Frame"
 import { Game } from "./components/Game"
 import { TickerItems } from "./components/TickerItems"
 
@@ -77,14 +78,13 @@ export class App extends React.Component<{}, State> {
 
   render() {
     return (
-      <React.Fragment>
-        <div> {this.state.connected ? "connected" : "disconnected"} </div>
+      <Frame>
         <Game
           currentGame={this.state.currentGame}
           nextGame={this.state.nextGame}
         />
         <TickerItems items={this.state.tickerItems} />
-      </React.Fragment>
+      </Frame>
     )
   }
 }
