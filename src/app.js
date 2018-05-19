@@ -5,10 +5,12 @@ import * as ReactDOM from "react-dom"
 import queryString from "query-string"
 import io from "socket.io-client"
 
-import { styles } from "./styles"
+import { styles } from "./styles/global"
 import { Frame } from "./components/Frame"
 import { Game } from "./components/Game"
 import { TickerItems } from "./components/TickerItems"
+import { Sidebar } from "./components/Sidebar"
+import { Countdown } from "./components/Countdown"
 
 const socketEndpoint = "http://cale.localdev:3000"
 
@@ -35,12 +37,6 @@ export class App extends React.Component<{}, State> {
     socket.on("connect", () => {
       this.setState({
         connected: true
-      })
-    })
-
-    socket.on("currentGame", data => {
-      this.setState({
-        currentGame: data
       })
     })
 
@@ -80,11 +76,10 @@ export class App extends React.Component<{}, State> {
   render() {
     return (
       <Frame>
-        <Game
-          currentGame={this.state.currentGame}
-          nextGame={this.state.nextGame}
-        />
         <TickerItems items={this.state.tickerItems} />
+        <Sidebar>
+          <Countdown deadline={new Date("13 June, 2018 10:00:00 GMT+8")} />
+        </Sidebar>
       </Frame>
     )
   }

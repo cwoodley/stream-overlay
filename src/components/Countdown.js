@@ -2,6 +2,21 @@
 
 import * as React from "react"
 import * as ReactDOM from "react-dom"
+import styled from "styled-components"
+import { colors } from "../styles/variables"
+
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 219px;
+  width: 100%;
+`
+
+const Heading = styled.h2`
+  color: ${colors.silver};
+`
 
 type Props = {
   deadline: Date
@@ -79,10 +94,11 @@ export class Countdown extends React.Component<Props, State> {
     const complete = hours <= 0 && minutes <= 0
 
     return (
-      <div>
+      <Container>
+        <h2>Time Remaining</h2>
         {!complete && `${this.state.hours}hrs, ${this.state.minutes}mins`}
         {complete && `Time's up!`}
-      </div>
+      </Container>
     )
   }
 }

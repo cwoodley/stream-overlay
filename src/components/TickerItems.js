@@ -3,17 +3,37 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import styled from "styled-components"
+import { colors, metrics } from "../styles/variables"
 
 const Container = styled.div`
+  background: ${colors.purple};
+  bottom: 0;
+  font-size: 24px;
+  grid-area: footer;
+  height: 76px;
+  overflow: hidden;
   position: relative;
+  width: ${metrics.deck.width};
 `
 
 const StyledItem = styled.div`
   display: inline-block;
+  opacity: 0;
   position: absolute;
-  transition: opacity 0.2s linear;
-  opacity: ${props => (props.isActive ? "1" : "0")};
+  top: 0;
+  text-align: center;
+  transition: opacity 1.5s ease-in-out;
+  width: 100%;
+
+  ${({ isActive }) =>
+    isActive &&
+    `
+    transition: opacity 1.5s ease-in-out;
+    opacity: 1;
+  `};
 `
+
+const ActiveItem = styled.div
 
 type Props = {
   items: string[]
@@ -47,7 +67,7 @@ export class TickerItems extends React.Component<Props, State> {
   cycleTicker = () => {
     setInterval(() => {
       this.handleNextTicker()
-    }, 2000)
+    }, 10000)
   }
 
   componentDidMount() {
@@ -67,11 +87,6 @@ export class TickerItems extends React.Component<Props, State> {
       )
     })
 
-    return (
-      <Container onClick={this.handleNextTicker}>
-        Ticker Items:
-        {dataItems}
-      </Container>
-    )
+    return <Container onClick={this.handleNextTicker}>{dataItems}</Container>
   }
 }
