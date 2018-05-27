@@ -20,7 +20,7 @@ const StyledItem = styled.div`
   display: inline-block;
   opacity: 0;
   position: absolute;
-  top: 0;
+  top: 22px;
   text-align: center;
   transition: opacity 1.5s ease-in-out;
   width: 100%;
