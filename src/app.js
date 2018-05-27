@@ -11,6 +11,7 @@ import { Game } from "./components/Game"
 import { TickerItems } from "./components/TickerItems"
 import { Sidebar } from "./components/Sidebar"
 import { Countdown } from "./components/Countdown"
+import { Status } from "./components/Status"
 
 const socketEndpoint = "http://cale.localdev:3000"
 
@@ -37,6 +38,12 @@ export class App extends React.Component<{}, State> {
     socket.on("connect", () => {
       this.setState({
         connected: true
+      })
+    })
+
+    socket.on("disconnect", () => {
+      this.setState({
+        connected: false
       })
     })
 
@@ -76,6 +83,7 @@ export class App extends React.Component<{}, State> {
   render() {
     return (
       <Frame>
+        <Status connected={this.state.connected} />
         <TickerItems items={this.state.tickerItems} />
         <Sidebar>
           <Countdown deadline={new Date("13 June, 2018 10:00:00 GMT+8")} />

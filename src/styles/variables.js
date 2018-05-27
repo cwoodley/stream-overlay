@@ -1,6 +1,7 @@
 export const colors = {
   purple: "#201c2c",
-  silver: "#DEDEDE"
+  silver: "#DEDEDE",
+  magenta: "#db1d40"
 }
 
 export const metrics = {
