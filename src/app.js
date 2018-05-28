@@ -21,7 +21,8 @@ type State = {
   nextGame: string,
   debugStyling: boolean,
   tickerItems: string[],
-  deadline: Date | undefined
+  deadline: Date | undefined,
+  donationTotal: string
 }
 
 export class App extends React.Component<{}, State> {
@@ -31,7 +32,8 @@ export class App extends React.Component<{}, State> {
     nextGame: "",
     debugStyling: false,
     tickerItems: [],
-    deadline: undefined
+    deadline: undefined,
+    donationTotal: ""
   }
 
   connectToSocket() {
@@ -46,6 +48,12 @@ export class App extends React.Component<{}, State> {
     socket.on("disconnect", () => {
       this.setState({
         connected: false
+      })
+    })
+
+    socket.on("donationTotal", data => {
+      this.setState({
+        donationTotal: data
       })
     })
 
@@ -94,8 +102,9 @@ export class App extends React.Component<{}, State> {
         <Status connected={this.state.connected} />
         <TickerItems items={this.state.tickerItems} />
         <Sidebar>
-          {this.state.deadline && <Countdown deadline={new Date(this.state.deadline)} />}
-          
+          {this.state.deadline && (
+            <Countdown deadline={new Date(this.state.deadline)} />
+          )}
         </Sidebar>
       </Frame>
     )
