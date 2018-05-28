@@ -21,7 +21,7 @@ type State = {
   nextGame: string,
   debugStyling: boolean,
   tickerItems: string[],
-  deadline: Date | undefined,
+  deadline?: Date,
   donationTotal: string
 }
 
