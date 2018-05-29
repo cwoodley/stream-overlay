@@ -105,6 +105,13 @@ export class App extends React.Component<{}, State> {
           {this.state.deadline && (
             <Countdown deadline={new Date(this.state.deadline)} />
           )}
+
+          {this.state.donationTotal && (
+            <React.Fragment>
+              <h2>Total Donations:</h2>
+              {this.state.donationTotal} of $1,500
+            </React.Fragment>
+          )}
         </Sidebar>
       </Frame>
     )
