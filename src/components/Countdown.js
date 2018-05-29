@@ -5,15 +5,6 @@ import * as ReactDOM from "react-dom"
 import styled from "styled-components"
 import { colors } from "../styles/variables"
 
-const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 219px;
-  width: 100%;
-`
-
 const Heading = styled.h2`
   color: ${colors.silver};
 `
@@ -84,9 +75,9 @@ export class Countdown extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.deadline !== this.props.deadline) {
-      this.setClock(prevProps.deadline)
+  componentWillReceiveProps(nextProps: Props) {
+    if (this.props.deadline !== nextProps.deadline) {
+      this.setClock(nextProps.deadline)
     }
   }
 
@@ -100,11 +91,11 @@ export class Countdown extends React.Component<Props, State> {
     const complete = hours <= 0 && minutes <= 0
 
     return (
-      <Container>
+      <React.Fragment>
         <h2>Time Remaining</h2>
         {!complete && `${this.state.hours}hrs, ${this.state.minutes}mins`}
         {complete && `Time's up!`}
-      </Container>
+      </React.Fragment>
     )
   }
 }
