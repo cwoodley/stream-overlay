@@ -75,12 +75,6 @@ export class Countdown extends React.Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (this.props.deadline !== nextProps.deadline) {
-      this.setClock(nextProps.deadline)
-    }
-  }
-
   componentDidMount() {
     this.setClock(this.props.deadline)
   }

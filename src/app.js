@@ -102,9 +102,7 @@ export class App extends React.Component<{}, State> {
         <Status connected={this.state.connected} />
         <TickerItems items={this.state.tickerItems} />
         <Sidebar>
-          {this.state.deadline && (
-            <Countdown deadline={new Date(this.state.deadline)} />
-          )}
+          <Countdown deadline={new Date("June 3, 2018 10:00:00 GMT+8")} />
 
           {this.state.donationTotal && (
             <React.Fragment>
