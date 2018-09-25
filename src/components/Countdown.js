@@ -79,6 +79,19 @@ export class Countdown extends React.Component<Props, State> {
     this.setClock(this.props.deadline)
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.deadline !== this.props.deadline) {
+      this.setClock(this.props.deadline)
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      hours: 0,
+      minutes: 0
+    })
+  }
+
   render() {
     const hours = this.state.hours
     const minutes = this.state.minutes
