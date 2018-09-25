@@ -13,7 +13,7 @@ import { Sidebar } from "./components/Sidebar"
 import { Countdown } from "./components/Countdown"
 import { Status } from "./components/Status"
 
-const socketEndpoint = "http://cale.localdev:3000"
+const socketEndpoint = "http://localhost:3000"
 
 type State = {
   connected: boolean,
