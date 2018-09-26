@@ -102,12 +102,13 @@ export class App extends React.Component<{}, State> {
         <Status connected={this.state.connected} />
         <TickerItems items={this.state.tickerItems} />
         <Sidebar>
-          <Countdown deadline={new Date("June 3, 2018 10:00:00 GMT+8")} />
+          <div><h2>Time Remaining:</h2></div>
+          {/* <Countdown deadline={new Date("June 3, 2018 10:00:00 GMT+8")} /> */}
 
           {this.state.donationTotal && (
             <React.Fragment>
-              <h2>Total Donations:</h2>
-              {this.state.donationTotal} of $1,500
+              <h2>Amount Raised:</h2>
+              {this.state.donationTotal}
             </React.Fragment>
           )}
         </Sidebar>

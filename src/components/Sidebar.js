@@ -7,6 +7,7 @@ import { colors, metrics } from "../styles/variables"
 
 const Wrapper = styled.aside`
   background: ${colors.purple};
+  padding-top: 220px;
   grid-area: sidebar;
   height: 100%;
   width: 240px;
@@ -17,7 +18,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 `
 
 type Props = {

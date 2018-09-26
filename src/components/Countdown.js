@@ -43,20 +43,22 @@ export class Countdown extends React.Component<Props, State> {
   runClock = (hours: number, minutes: number) => {
     const complete = hours <= 0 && minutes <= 0
 
-    const clock = setInterval(() => {
+    setInterval(() => {
+      console.log('running')
+
       this.setState({
         hours: hours,
         minutes: minutes
       })
 
       if (complete) {
-        clearInterval(clock)
         this.setState({
           hours: 0,
           minutes: 0
         })
       }
     }, 1000 * 30)
+
   }
 
   setClock = (deadline: Date) => {
@@ -86,7 +88,7 @@ export class Countdown extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <h2>Time Remaining</h2>
+        <h2>Time Remaining:</h2>
         {!complete && `${this.state.hours}hrs, ${this.state.minutes}mins`}
         {complete && `Time's up!`}
       </React.Fragment>
