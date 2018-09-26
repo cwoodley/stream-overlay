@@ -13,7 +13,7 @@ import { Sidebar } from "./components/Sidebar"
 import { Countdown } from "./components/Countdown"
 import { Status } from "./components/Status"
 
-const socketEndpoint = "http://cale.localdev:3000"
+const socketEndpoint = "http://localhost:3000"
 
 type State = {
   connected: boolean,
@@ -97,13 +97,15 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
+    console.log(this.state.deadline)
     return (
       <Frame>
         <Status connected={this.state.connected} />
         <TickerItems items={this.state.tickerItems} />
         <Sidebar>
-          <div><h2>Time Remaining:</h2></div>
-          {/* <Countdown deadline={new Date("June 3, 2018 10:00:00 GMT+8")} /> */}
+          {this.state.deadline && (
+            <Countdown deadline={new Date(this.state.deadline)} />
+          )}
 
           {this.state.donationTotal && (
             <React.Fragment>
