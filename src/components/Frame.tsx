@@ -1,7 +1,4 @@
-// @flow
-
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import React, { ReactNode } from "react"
 import styled from "styled-components"
 import { colors, metrics } from "../styles/variables"
 
@@ -27,15 +24,15 @@ const Deck = styled.div`
   width: ${metrics.deck.width};
 `
 
-type Props = {
-  children: React.Node
+interface Props {
+  children?: React.ReactNode
 }
 
-export const Frame = ({ children }: Props): React.Node => {
+export const Frame: React.FC = (props: Props) => {
   return (
     <Container>
       <Deck />
-      {children}
+      {props.children}
     </Container>
   )
 }

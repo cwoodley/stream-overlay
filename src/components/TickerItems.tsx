@@ -1,7 +1,6 @@
 /* @flow */
 
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import React from "react"
 import styled from "styled-components"
 import { colors, metrics } from "../styles/variables"
 
@@ -16,7 +15,11 @@ const Container = styled.div`
   width: ${metrics.deck.width};
 `
 
-const StyledItem = styled.div`
+interface ItemProps {
+  isActive: boolean
+}
+
+const StyledItem = styled.div<ItemProps>`
   display: inline-block;
   opacity: 0;
   position: absolute;
@@ -32,8 +35,6 @@ const StyledItem = styled.div`
     opacity: 1;
   `};
 `
-
-const ActiveItem = styled.div
 
 type Props = {
   items: string[]

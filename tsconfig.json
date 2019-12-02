@@ -1,0 +1,16 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "typeRoots": ["node_modules/@types", "@types"]
+  },
+  "exclude": ["node_modules", "dist"]
+}

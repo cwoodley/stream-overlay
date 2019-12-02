@@ -8,6 +8,11 @@
     "build": "parcel build src/index.html"
   },
   "dependencies": {
+    "@types/node": "^12.12.11",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "@types/socket.io-client": "^1.4.32",
+    "@types/styled-components": "^4.4.0",
     "query-string": "^6.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.3",
@@ -19,6 +24,6 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "flow-bin": "^0.72.0"
+    "typescript": "^3.7.2"
   }
 }

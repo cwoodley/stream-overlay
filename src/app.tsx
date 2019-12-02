@@ -1,13 +1,9 @@
-/* @flow */
-
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import React from "react"
+import ReactDOM from "react-dom"
 import queryString from "query-string"
 import io from "socket.io-client"
 
-import { styles } from "./styles/global"
 import { Frame } from "./components/Frame"
-import { Game } from "./components/Game"
 import { TickerItems } from "./components/TickerItems"
 import { Sidebar } from "./components/Sidebar"
 import { Countdown } from "./components/Countdown"
@@ -15,18 +11,18 @@ import { Status } from "./components/Status"
 
 const socketEndpoint = "http://localhost:3000"
 
-type State = {
-  connected: boolean,
-  currentGame: string,
-  nextGame: string,
-  debugStyling: boolean,
-  tickerItems: string[],
-  deadline?: Date,
+interface State {
+  connected: boolean
+  currentGame: string
+  nextGame: string
+  debugStyling: boolean
+  tickerItems: string[]
+  deadline?: Date
   donationTotal: string
 }
 
 export class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     connected: false,
     currentGame: "",
     nextGame: "",
@@ -97,7 +93,6 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
-    console.log(this.state.deadline)
     return (
       <Frame>
         <Status connected={this.state.connected} />
@@ -119,6 +114,4 @@ export class App extends React.Component<{}, State> {
   }
 }
 
-// must explicitly allow any type with ReactDOM's render function here
-// otherwise flow will complain
-ReactDOM.render(<App />, (document.getElementById("app"): any))
+ReactDOM.render(<App />, document.getElementById("app"))

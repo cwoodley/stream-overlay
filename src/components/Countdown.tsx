@@ -1,20 +1,11 @@
-/* @flow */
-
-import * as React from "react"
-import * as ReactDOM from "react-dom"
-import styled from "styled-components"
-import { colors } from "../styles/variables"
-
-const Heading = styled.h2`
-  color: ${colors.silver};
-`
+import React from "react"
 
 type Props = {
   deadline: Date
 }
 
 type State = {
-  hours: number,
+  hours: number
   minutes: number
 }
 
@@ -44,7 +35,7 @@ export class Countdown extends React.Component<Props, State> {
     const complete = hours <= 0 && minutes <= 0
 
     setInterval(() => {
-      console.log('running')
+      console.log("running")
 
       this.setState({
         hours: hours,
@@ -59,6 +50,7 @@ export class Countdown extends React.Component<Props, State> {
       }
     }, 1000 * 30)
 
+    return
   }
 
   setClock = (deadline: Date) => {

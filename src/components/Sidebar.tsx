@@ -1,9 +1,6 @@
-/* @flow */
-
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import React from "react"
 import styled from "styled-components"
-import { colors, metrics } from "../styles/variables"
+import { colors } from "../styles/variables"
 
 const Wrapper = styled.aside`
   background: ${colors.purple};
@@ -22,11 +19,11 @@ const Container = styled.div`
 `
 
 type Props = {
-  children: React.Node[]
+  children: React.ReactNode[]
 }
 
-export const Sidebar = ({ children }: Props): React.Node => {
-  const elements = children.map((child, i) => {
+export const Sidebar: React.FC<Props> = (props: Props) => {
+  const elements = props.children.map((child, i) => {
     return <Container key={i}>{child}</Container>
   })
 
